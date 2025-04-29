@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: seo-assistant
+    env: python
+    buildCommand: ""
+    startCommand: "python app.py"

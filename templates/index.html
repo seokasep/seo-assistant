@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SEO Domain Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>SEO Domain Assistant</h1>
+    <form method="POST">
+        <input type="text" name="url" placeholder="Masukkan URL website" required>
+        <button type="submit">Analisa Sekarang</button>
+    </form>
+
+    {% if result %}
+        {% if result.error %}
+            <p style="color: red;">Gagal mengambil data: {{ result.error }}</p>
+        {% else %}
+        <div class="result-box">
+            <h2>Hasil Analisa: {{ result.domain }}</h2>
+            <p><strong>Title:</strong> {{ result.title }}</p>
+            <p><strong>Meta Description:</strong> {{ result.meta_desc }}</p>
+            <p><strong>H1:</strong> {{ result.h1 }}</p>
+            <p><strong>Jumlah Kata:</strong> {{ result.word_count }}</p>
+            <p><strong>HTTPS Aktif:</strong> {{ "Ya" if result.https else "Tidak" }}</p>
+            <h3>Saran Otomatis:</h3>
+            <ul>
+                {% for s in result.insights %}
+                <li>{{ s }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
